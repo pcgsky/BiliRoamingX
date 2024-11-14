@@ -49,9 +49,10 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         run: ./gradlew --no-daemon -Dorg.gradle.jvmargs=-Xmx2g -Pversion=$VERSION dist
 
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+      - name: Upload built apk
         if: success()
+        uses: actions/upload-artifact@v3
         with:
-          name: BiliRoamingX-${{ env.VERSION }}
-          path: 'build'
+          name: snapshot
+          path: |
+              ./
